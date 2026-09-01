@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "안전팀, 수색팀, 개발팀이 한 줄 메시지를 남기는 방주 게시판. 닉네임과 30자 이내의 말을 남겨보세요.",
+          "안전팀, 수색팀, 개발팀이 한 줄 메시지를 남기는 방주 게시판. 닉네임과 30자 이내의 말을 남겨주세요.",
       },
       { property: "og:title", content: "방주 게시판 | 팀별 메시지 보드" },
       {
