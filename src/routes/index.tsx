@@ -152,20 +152,22 @@ function Board() {
       style={{ backgroundImage: `url(${bgImg})` }}
     >
       <Toaster />
-      <div className="mx-auto w-full max-w-4xl px-4 pb-24 pt-10">
-        <header className="mb-10 flex items-start justify-between gap-4">
+      <header className="sticky top-0 z-20 border-b border-border/60 bg-background/80 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-3xl items-start justify-between gap-4 px-4 py-4">
           <div>
-            <h1 className="text-2xl font-semibold tracking-[0.2em] text-foreground">
+            <h1 className="text-xl font-semibold tracking-[0.2em] text-foreground">
               방주 게시판
             </h1>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="mt-1 text-xs text-muted-foreground">
               남기고 싶은 한마디를 기록하세요.
             </p>
           </div>
 
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-              <Button variant="secondary">게시글 남기기</Button>
+              <Button variant="secondary" size="sm">
+                게시글 남기기
+              </Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
@@ -217,9 +219,11 @@ function Board() {
               </div>
             </DialogContent>
           </Dialog>
-        </header>
+        </div>
+      </header>
 
-        <section className="space-y-5">
+      <div className="mx-auto w-full max-w-3xl px-4 pb-24 pt-6">
+        <section className="mx-auto max-w-sm space-y-3">
           {posts.length === 0 && (
             <p className="py-20 text-center text-sm text-muted-foreground">
               아직 게시글이 없습니다.
@@ -228,18 +232,21 @@ function Board() {
           {posts.map((post) => {
             const t = TEAMS.find((x) => x.value === post.team) ?? TEAMS[0]!;
             return (
-              <article key={post.id} className="relative">
+              <article
+                key={post.id}
+                className="relative aspect-[5/2] w-full overflow-hidden rounded-md"
+              >
                 <img
                   src={t.image}
                   alt={`${t.label} 게시글 배경`}
-                  className="w-full"
+                  className="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 flex flex-col justify-center gap-1 px-[6%]">
-                  <span className="text-sm tracking-[0.25em] text-white">
+                <div className="absolute inset-0 flex flex-col justify-center gap-0.5 px-[6%]">
+                  <span className="text-[10px] tracking-[0.2em] text-white">
                     {t.label} · {post.nickname}
                   </span>
-                  <p className="text-xl font-medium text-white sm:text-2xl">
+                  <p className="text-sm font-medium text-white sm:text-base">
                     {post.message}
                   </p>
                 </div>
