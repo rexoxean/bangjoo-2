@@ -19,7 +19,7 @@ export const Route = createFileRoute("/manage")({
 // the /manage screen, it is not real authentication. Change these before
 // sharing the link with other admins.
 const ADMIN_ID = "admin";
-const ADMIN_PASSWORD = "bangju2026";
+const ADMIN_PASSWORD = "bangjoo2026";
 
 const AUTH_STORAGE_KEY = "bangju-admin-authed";
 
