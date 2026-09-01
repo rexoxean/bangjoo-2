@@ -12,10 +12,10 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
-import bgAsset from "@/assets/bg.png.asset.json";
-import safetyAsset from "@/assets/card-safety.png.asset.json";
-import devAsset from "@/assets/card-dev.png.asset.json";
-import searchAsset from "@/assets/card-search.png.asset.json";
+import bgImg from "@/assets/bg.png";
+import safetyImg from "@/assets/card-safety.png";
+import devImg from "@/assets/card-dev.png";
+import searchImg from "@/assets/card-search.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,9 +49,9 @@ type Post = {
 };
 
 const TEAMS: { value: Team; label: string; image: string }[] = [
-  { value: "safety", label: "안전팀", image: safetyAsset.url },
-  { value: "search", label: "수색팀", image: searchAsset.url },
-  { value: "dev", label: "개발팀", image: devAsset.url },
+  { value: "safety", label: "안전팀", image: safetyImg },
+  { value: "search", label: "수색팀", image: searchImg },
+  { value: "dev", label: "개발팀", image: devImg },
 ];
 
 function Board() {
@@ -111,7 +111,7 @@ function Board() {
   return (
     <main
       className="min-h-screen w-full bg-background bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: `url(${bgAsset.url})` }}
+      style={{ backgroundImage: `url(${bgImg})` }}
     >
       <Toaster />
       <div className="mx-auto w-full max-w-4xl px-4 pb-24 pt-10">
