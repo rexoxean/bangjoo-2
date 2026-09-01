@@ -236,10 +236,10 @@ function Board() {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 flex flex-col justify-center gap-1 px-[6%]">
-                  <span className="text-[11px] tracking-[0.25em] text-neutral-500">
+                  <span className="text-sm tracking-[0.25em] text-white">
                     {t.label} · {post.nickname}
                   </span>
-                  <p className="text-base font-medium text-neutral-900 sm:text-xl">
+                  <p className="text-xl font-medium text-white sm:text-2xl">
                     {post.message}
                   </p>
                 </div>
