@@ -4,6 +4,22 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: "PyeongchangPeace";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Light.woff2")
+    format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PyeongchangPeace";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
 /*
  * Design system definition.
  *
@@ -140,5 +156,6 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: "PyeongchangPeace", ui-sans-serif, system-ui, sans-serif;
   }
 }

@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "안전팀, 수색팀, 개발팀이 한 줄 메시지를 남기는 방주 게시판. 닉네임과 30자 이내의 말을 남겨주세요.",
+          "안전팀, 수색팀, 개발팀이 한 줄 메시지를 남기는 방주 게시판. 닉네임과 30자 이내의 말을 남겨보세요.",
       },
       { property: "og:title", content: "방주 게시판 | 팀별 메시지 보드" },
       {
@@ -54,6 +54,8 @@ const TEAMS: { value: Team; label: string; image: string }[] = [
   { value: "dev", label: "개발팀", image: devImg },
 ];
 
+const PRELOAD_IMAGES = [bgImg, safetyImg, devImg, searchImg];
+
 function Board() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [open, setOpen] = useState(false);
@@ -61,6 +63,29 @@ function Board() {
   const [message, setMessage] = useState("");
   const [team, setTeam] = useState<Team | null>(null);
   const [saving, setSaving] = useState(false);
+  const [imagesReady, setImagesReady] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    let loaded = 0;
+
+    PRELOAD_IMAGES.forEach((src) => {
+      const img = new Image();
+      const settle = () => {
+        loaded += 1;
+        if (!cancelled && loaded === PRELOAD_IMAGES.length) {
+          setImagesReady(true);
+        }
+      };
+      img.onload = settle;
+      img.onerror = settle;
+      img.src = src;
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const load = async () => {
     const { data } = await supabase
@@ -107,6 +132,19 @@ function Board() {
     setOpen(false);
     void load();
   };
+
+  if (!imagesReady) {
+    return (
+      <main className="flex min-h-screen w-full items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-3">
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-muted-foreground border-t-transparent" />
+          <p className="text-sm tracking-[0.2em] text-muted-foreground">
+            로딩중...
+          </p>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main
